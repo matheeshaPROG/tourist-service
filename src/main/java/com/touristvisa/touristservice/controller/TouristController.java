@@ -2,17 +2,17 @@ package com.touristvisa.touristservice.controller;
 
 import com.touristvisa.touristservice.entity.Tourist;
 import com.touristvisa.touristservice.service.TouristService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/tourists")
+@RequiredArgsConstructor
 public class TouristController {
 
-    @Autowired
-    private TouristService touristService;
+    private final TouristService touristService;
 
     @PostMapping
     public Tourist createTourist(@RequestBody Tourist tourist) {

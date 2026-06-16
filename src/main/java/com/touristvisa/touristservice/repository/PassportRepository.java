@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PassportRepository extends JpaRepository<Passport, Long> {
-    List<Passport> findByTouristId(Long touristId);
+    List<Passport> findByTourist_TouristId(Long touristId);
 }

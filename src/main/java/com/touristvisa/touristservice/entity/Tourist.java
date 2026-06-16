@@ -13,9 +13,17 @@ public class Tourist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long touristId;
 
+    @Column(nullable = false)
     private String firstName;
+
+    @Column(nullable = false)
     private String lastName;
+
+    @Column(nullable = false)
     private String nationality;
+
+    @Column(nullable = false)
     private LocalDate dateOfBirth;
+
     private String gender;
 }

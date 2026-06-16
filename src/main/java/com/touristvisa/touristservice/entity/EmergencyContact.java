@@ -3,28 +3,26 @@ package com.touristvisa.touristservice.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDate;
 
 @Entity
-@Table(name = "passports")
+@Table(name = "emergency_contacts")
 @Data
-public class Passport {
+public class EmergencyContact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long passportId;
+    private Long contactId;
 
     @ManyToOne
     @JoinColumn(name = "tourist_id", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Tourist tourist;
 
-    @Column(nullable = false, unique = true)
-    private String passportNumber;
+    @Column(nullable = false)
+    private String name;
 
     @Column(nullable = false)
-    private LocalDate issueDate;
+    private String phoneNumber;
 
-    @Column(nullable = false)
-    private LocalDate expiryDate;
+    private String relationship;
 }

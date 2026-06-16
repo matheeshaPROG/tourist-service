@@ -1,19 +1,25 @@
 package com.touristvisa.touristservice.service;
 
 import com.touristvisa.touristservice.entity.Passport;
+import com.touristvisa.touristservice.entity.Tourist;
 import com.touristvisa.touristservice.repository.PassportRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.touristvisa.touristservice.repository.TouristRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PassportService {
 
-    @Autowired
-    private PassportRepository passportRepository;
+    private final PassportRepository passportRepository;
+    private final TouristRepository touristRepository;
 
-    public Passport createPassport(Passport passport) {
+    public Passport createPassport(Long touristId, Passport passport) {
+        Tourist tourist = touristRepository.findById(touristId)
+                .orElseThrow(() -> new RuntimeException("Tourist not found with id: " + touristId));
+        passport.setTourist(tourist);
         return passportRepository.save(passport);
     }
 
@@ -27,15 +33,17 @@ public class PassportService {
     }
 
     public List<Passport> getPassportsByTouristId(Long touristId) {
-        return passportRepository.findByTouristId(touristId);
+        return passportRepository.findByTourist_TouristId(touristId);
     }
 
-    public Passport updatePassport(Long id, Passport updatedPassport) {
+    public Passport updatePassport(Long id, Long touristId, Passport updatedPassport) {
         Passport passport = getPassportById(id);
+        Tourist tourist = touristRepository.findById(touristId)
+                .orElseThrow(() -> new RuntimeException("Tourist not found with id: " + touristId));
+        passport.setTourist(tourist);
         passport.setPassportNumber(updatedPassport.getPassportNumber());
         passport.setIssueDate(updatedPassport.getIssueDate());
         passport.setExpiryDate(updatedPassport.getExpiryDate());
-        passport.setTouristId(updatedPassport.getTouristId());
         return passportRepository.save(passport);
     }
 

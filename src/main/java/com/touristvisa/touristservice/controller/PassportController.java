@@ -2,21 +2,21 @@ package com.touristvisa.touristservice.controller;
 
 import com.touristvisa.touristservice.entity.Passport;
 import com.touristvisa.touristservice.service.PassportService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/passports")
+@RequiredArgsConstructor
 public class PassportController {
 
-    @Autowired
-    private PassportService passportService;
+    private final PassportService passportService;
 
-    @PostMapping
-    public Passport createPassport(@RequestBody Passport passport) {
-        return passportService.createPassport(passport);
+    @PostMapping("/tourist/{touristId}")
+    public Passport createPassport(@PathVariable Long touristId, @RequestBody Passport passport) {
+        return passportService.createPassport(touristId, passport);
     }
 
     @GetMapping
@@ -34,9 +34,9 @@ public class PassportController {
         return passportService.getPassportsByTouristId(touristId);
     }
 
-    @PutMapping("/{id}")
-    public Passport updatePassport(@PathVariable Long id, @RequestBody Passport passport) {
-        return passportService.updatePassport(id, passport);
+    @PutMapping("/{id}/tourist/{touristId}")
+    public Passport updatePassport(@PathVariable Long id, @PathVariable Long touristId, @RequestBody Passport passport) {
+        return passportService.updatePassport(id, touristId, passport);
     }
 
     @DeleteMapping("/{id}")
