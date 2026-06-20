@@ -1,6 +1,6 @@
 package com.touristvisa.touristservice.controller;
 
-import com.touristvisa.touristservice.entity.EmergencyContact;
+import com.touristvisa.touristservice.dto.EmergencyContactDTO;
 import com.touristvisa.touristservice.service.EmergencyContactService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,28 +15,28 @@ public class EmergencyContactController {
     private final EmergencyContactService emergencyContactService;
 
     @PostMapping("/tourist/{touristId}")
-    public EmergencyContact createContact(@PathVariable Long touristId, @RequestBody EmergencyContact contact) {
-        return emergencyContactService.createContact(touristId, contact);
+    public EmergencyContactDTO createContact(@PathVariable Long touristId, @RequestBody EmergencyContactDTO dto) {
+        return emergencyContactService.createContact(touristId, dto);
     }
 
     @GetMapping
-    public List<EmergencyContact> getAllContacts() {
+    public List<EmergencyContactDTO> getAllContacts() {
         return emergencyContactService.getAllContacts();
     }
 
     @GetMapping("/{id}")
-    public EmergencyContact getContactById(@PathVariable Long id) {
+    public EmergencyContactDTO getContactById(@PathVariable Long id) {
         return emergencyContactService.getContactById(id);
     }
 
     @GetMapping("/tourist/{touristId}")
-    public List<EmergencyContact> getContactsByTouristId(@PathVariable Long touristId) {
+    public List<EmergencyContactDTO> getContactsByTouristId(@PathVariable Long touristId) {
         return emergencyContactService.getContactsByTouristId(touristId);
     }
 
     @PutMapping("/{id}/tourist/{touristId}")
-    public EmergencyContact updateContact(@PathVariable Long id, @PathVariable Long touristId, @RequestBody EmergencyContact contact) {
-        return emergencyContactService.updateContact(id, touristId, contact);
+    public EmergencyContactDTO updateContact(@PathVariable Long id, @PathVariable Long touristId, @RequestBody EmergencyContactDTO dto) {
+        return emergencyContactService.updateContact(id, touristId, dto);
     }
 
     @DeleteMapping("/{id}")

@@ -1,6 +1,6 @@
 package com.touristvisa.touristservice.controller;
 
-import com.touristvisa.touristservice.entity.Tourist;
+import com.touristvisa.touristservice.dto.TouristDTO;
 import com.touristvisa.touristservice.service.TouristService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,23 +15,23 @@ public class TouristController {
     private final TouristService touristService;
 
     @PostMapping
-    public Tourist createTourist(@RequestBody Tourist tourist) {
-        return touristService.createTourist(tourist);
+    public TouristDTO createTourist(@RequestBody TouristDTO dto) {
+        return touristService.createTourist(dto);
     }
 
     @GetMapping
-    public List<Tourist> getAllTourists() {
+    public List<TouristDTO> getAllTourists() {
         return touristService.getAllTourists();
     }
 
     @GetMapping("/{id}")
-    public Tourist getTouristById(@PathVariable Long id) {
+    public TouristDTO getTouristById(@PathVariable Long id) {
         return touristService.getTouristById(id);
     }
 
     @PutMapping("/{id}")
-    public Tourist updateTourist(@PathVariable Long id, @RequestBody Tourist tourist) {
-        return touristService.updateTourist(id, tourist);
+    public TouristDTO updateTourist(@PathVariable Long id, @RequestBody TouristDTO dto) {
+        return touristService.updateTourist(id, dto);
     }
 
     @DeleteMapping("/{id}")
