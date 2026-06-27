@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 @RequiredArgsConstructor
@@ -34,11 +36,9 @@ public class EmergencyContactService {
         return mapToDTO(saved);
     }
 
-    public List<EmergencyContactDTO> getAllContacts() {
-        return emergencyContactRepository.findAll()
-                .stream()
-                .map(this::mapToDTO)
-                .collect(Collectors.toList());
+    public Page<EmergencyContactDTO> getAllContacts(Pageable pageable) {
+        return emergencyContactRepository.findAll(pageable)
+                .map(this::mapToDTO);
     }
 
     public EmergencyContactDTO getContactById(Long id) {

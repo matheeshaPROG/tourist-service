@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 @RequiredArgsConstructor
@@ -33,11 +35,9 @@ public class ExitRecordService {
         return mapToDTO(saved);
     }
 
-    public List<ExitRecordDTO> getAllExitRecords() {
-        return exitRecordRepository.findAll()
-                .stream()
-                .map(this::mapToDTO)
-                .collect(Collectors.toList());
+    public Page<ExitRecordDTO> getAllExitRecords(Pageable pageable) {
+        return exitRecordRepository.findAll(pageable)
+                .map(this::mapToDTO);
     }
 
     public ExitRecordDTO getExitRecordById(Long id) {

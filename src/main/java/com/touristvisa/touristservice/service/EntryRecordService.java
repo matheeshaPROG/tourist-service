@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 @RequiredArgsConstructor
@@ -33,11 +35,9 @@ public class EntryRecordService {
         return mapToDTO(saved);
     }
 
-    public List<EntryRecordDTO> getAllEntryRecords() {
-        return entryRecordRepository.findAll()
-                .stream()
-                .map(this::mapToDTO)
-                .collect(Collectors.toList());
+    public Page<EntryRecordDTO> getAllEntryRecords(Pageable pageable) {
+        return entryRecordRepository.findAll(pageable)
+                .map(this::mapToDTO);
     }
 
     public EntryRecordDTO getEntryRecordById(Long id) {

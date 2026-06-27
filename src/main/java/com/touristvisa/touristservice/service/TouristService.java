@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 @RequiredArgsConstructor
@@ -28,11 +30,9 @@ public class TouristService {
         return mapToDTO(saved);
     }
 
-    public List<TouristDTO> getAllTourists() {
-        return touristRepository.findAll()
-                .stream()
-                .map(this::mapToDTO)
-                .collect(Collectors.toList());
+    public Page<TouristDTO> getAllTourists(Pageable pageable) {
+        return touristRepository.findAll(pageable)
+                .map(this::mapToDTO);
     }
 
     public TouristDTO getTouristById(Long id) {

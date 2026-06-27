@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 @RequiredArgsConstructor
@@ -34,11 +36,9 @@ public class PassportService {
         return mapToDTO(saved);
     }
 
-    public List<PassportDTO> getAllPassports() {
-        return passportRepository.findAll()
-                .stream()
-                .map(this::mapToDTO)
-                .collect(Collectors.toList());
+    public Page<PassportDTO> getAllPassports(Pageable pageable) {
+        return passportRepository.findAll(pageable)
+                .map(this::mapToDTO);
     }
 
     public PassportDTO getPassportById(Long id) {

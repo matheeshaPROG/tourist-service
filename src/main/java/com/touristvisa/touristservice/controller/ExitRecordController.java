@@ -3,6 +3,8 @@ package com.touristvisa.touristservice.controller;
 import com.touristvisa.touristservice.dto.ExitRecordDTO;
 import com.touristvisa.touristservice.service.ExitRecordService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +22,10 @@ public class ExitRecordController {
     }
 
     @GetMapping
-    public List<ExitRecordDTO> getAllExitRecords() {
-        return exitRecordService.getAllExitRecords();
+    public Page<ExitRecordDTO> getAllExitRecords(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return exitRecordService.getAllExitRecords(PageRequest.of(page, size));
     }
 
     @GetMapping("/{id}")

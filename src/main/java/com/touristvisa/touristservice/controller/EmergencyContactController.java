@@ -3,6 +3,8 @@ package com.touristvisa.touristservice.controller;
 import com.touristvisa.touristservice.dto.EmergencyContactDTO;
 import com.touristvisa.touristservice.service.EmergencyContactService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +22,10 @@ public class EmergencyContactController {
     }
 
     @GetMapping
-    public List<EmergencyContactDTO> getAllContacts() {
-        return emergencyContactService.getAllContacts();
+    public Page<EmergencyContactDTO> getAllContacts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return emergencyContactService.getAllContacts(PageRequest.of(page, size));
     }
 
     @GetMapping("/{id}")
