@@ -1,7 +1,9 @@
 package com.touristvisa.touristservice.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.touristvisa.touristservice.dto.HotelTouristViewDTO;
 import com.touristvisa.touristservice.dto.TouristDTO;
+import com.touristvisa.touristservice.entity.Passport;
 import com.touristvisa.touristservice.entity.Tourist;
 import com.touristvisa.touristservice.exception.ResourceNotFoundException;
 import com.touristvisa.touristservice.repository.PassportRepository;
@@ -66,24 +68,37 @@ public class TouristService {
     }
 
     public HotelTouristViewDTO getHotelTouristView(String passportNumber) {
-        com.touristvisa.touristservice.entity.Passport passport = passportRepository.findByPassportNumber(passportNumber)
+        Passport passport = passportRepository.findByPassportNumber(passportNumber)
                 .orElseThrow(() -> new ResourceNotFoundException("Passport not found"));
         
         Tourist tourist = passport.getTourist();
         String visaStatus = "No Visa Found";
         
         try {
-            String url = "http://207.180.253.221:8085/api/v1/visas/search/passport?passportId=" + passport.getPassportId();
-            java.util.Map<String, Object> response = restTemplate.getForObject(url, java.util.Map.class);
-            if (response != null && response.containsKey("content")) {
-                List<java.util.Map<String, Object>> content = (List<java.util.Map<String, Object>>) response.get("content");
-                if (!content.isEmpty()) {
-                    java.util.Map<String, Object> visa = content.get(0);
-                    visaStatus = (String) visa.getOrDefault("status", visa.getOrDefault("visaStatus", "Valid"));
+            String url = "http://207.180.253.221:8085/api/v1/visas/search/passport?passportId=" + passport.getPassportId() + "&page=0&size=10";
+            JsonNode response = restTemplate.getForObject(url, JsonNode.class);
+            
+            if (response != null) {
+                JsonNode contentNode = response;
+                // If it's a Spring Page, it has a "content" array
+                if (response.has("content")) {
+                    contentNode = response.get("content");
+                }
+                
+                if (contentNode.isArray() && contentNode.size() > 0) {
+                    JsonNode firstVisa = contentNode.get(0);
+                    if (firstVisa.has("visaStatus")) {
+                        visaStatus = firstVisa.get("visaStatus").asText();
+                    } else if (firstVisa.has("status")) {
+                        visaStatus = firstVisa.get("status").asText();
+                    } else {
+                        visaStatus = "Valid";
+                    }
                 }
             }
         } catch (Exception e) {
             System.err.println("Failed to fetch visa status: " + e.getMessage());
+            e.printStackTrace();
         }
         
         return new HotelTouristViewDTO(
