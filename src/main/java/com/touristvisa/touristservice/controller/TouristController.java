@@ -38,4 +38,9 @@ public class TouristController {
     public void deleteTourist(@PathVariable Long id) {
         touristService.deleteTourist(id);
     }
+
+    @GetMapping("/hotel-view")
+    public com.touristvisa.touristservice.dto.HotelTouristViewDTO getHotelTouristView(@RequestParam String passportNumber) {
+        return touristService.getHotelTouristView(passportNumber);
+    }
 }

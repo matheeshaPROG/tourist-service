@@ -1,11 +1,15 @@
 package com.touristvisa.touristservice.service;
 
+import com.touristvisa.touristservice.dto.HotelTouristViewDTO;
 import com.touristvisa.touristservice.dto.TouristDTO;
 import com.touristvisa.touristservice.entity.Tourist;
 import com.touristvisa.touristservice.exception.ResourceNotFoundException;
+import com.touristvisa.touristservice.repository.PassportRepository;
 import com.touristvisa.touristservice.repository.TouristRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +19,8 @@ import java.util.stream.Collectors;
 public class TouristService {
 
     private final TouristRepository touristRepository;
+    private final PassportRepository passportRepository;
+    private final RestTemplate restTemplate = new org.springframework.web.client.RestTemplate();
 
     public TouristDTO createTourist(TouristDTO dto) {
         Tourist tourist = new Tourist();
@@ -59,7 +65,37 @@ public class TouristService {
         touristRepository.deleteById(id);
     }
 
-    // Helper method: converts an entity into a DTO. Reused by every method above.
+    public HotelTouristViewDTO getHotelTouristView(String passportNumber) {
+        com.touristvisa.touristservice.entity.Passport passport = passportRepository.findByPassportNumber(passportNumber)
+                .orElseThrow(() -> new ResourceNotFoundException("Passport not found"));
+        
+        Tourist tourist = passport.getTourist();
+        String visaStatus = "No Visa Found";
+        
+        try {
+            String url = "http://207.180.253.221:8085/api/v1/visas/search/passport?passportId=" + passport.getPassportId();
+            java.util.Map<String, Object> response = restTemplate.getForObject(url, java.util.Map.class);
+            if (response != null && response.containsKey("content")) {
+                List<java.util.Map<String, Object>> content = (List<java.util.Map<String, Object>>) response.get("content");
+                if (!content.isEmpty()) {
+                    java.util.Map<String, Object> visa = content.get(0);
+                    visaStatus = (String) visa.getOrDefault("status", visa.getOrDefault("visaStatus", "Valid"));
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to fetch visa status: " + e.getMessage());
+        }
+        
+        return new HotelTouristViewDTO(
+                tourist.getTouristId(),
+                tourist.getFirstName(),
+                tourist.getLastName(),
+                passportNumber,
+                visaStatus
+        );
+    }
+
+
     private TouristDTO mapToDTO(Tourist tourist) {
         TouristDTO dto = new TouristDTO();
         dto.setTouristId(tourist.getTouristId());
