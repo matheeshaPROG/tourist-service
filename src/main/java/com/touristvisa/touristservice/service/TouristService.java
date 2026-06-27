@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import com.fasterxml.jackson.databind.JsonNode;
 
 @Service
 @RequiredArgsConstructor
@@ -75,7 +76,7 @@ public class TouristService {
         String visaStatus = "No Visa Found";
         
         try {
-            String url = "http://207.180.253.221:8085/api/v1/visas/search/passport?passportId=" + passport.getPassportId() + "&page=0&size=10";
+            String url = "http://207.180.253.221:8085/api/visas/search/passport?passportId=" + passport.getPassportId() + "&page=0&size=10";
             JsonNode response = restTemplate.getForObject(url, JsonNode.class);
             
             if (response != null) {
@@ -86,14 +87,19 @@ public class TouristService {
                 }
                 
                 if (contentNode.isArray() && contentNode.size() > 0) {
-                    JsonNode firstVisa = contentNode.get(0);
-                    if (firstVisa.has("visaStatus")) {
-                        visaStatus = firstVisa.get("visaStatus").asText();
-                    } else if (firstVisa.has("status")) {
-                        visaStatus = firstVisa.get("status").asText();
-                    } else {
-                        visaStatus = "Valid";
+                    java.util.List<String> statuses = new java.util.ArrayList<>();
+                    for (JsonNode visa : contentNode) {
+                        String status = visa.has("visaStatus") ? visa.get("visaStatus").asText() : 
+                                       (visa.has("status") ? visa.get("status").asText() : "Valid");
+                        String type = visa.has("visaType") ? visa.get("visaType").asText() : "";
+                        
+                        if (!type.isEmpty()) {
+                            statuses.add(status + " (" + type + ")");
+                        } else {
+                            statuses.add(status);
+                        }
                     }
+                    visaStatus = String.join(", ", statuses);
                 }
             }
         } catch (Exception e) {
