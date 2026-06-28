@@ -11,7 +11,13 @@ import com.touristvisa.touristservice.repository.TouristRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
+import org.springframework.http.client.ClientHttpRequestInterceptor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import jakarta.servlet.http.HttpServletRequest;
+import java.util.Collections;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +29,24 @@ public class TouristService {
 
     private final TouristRepository touristRepository;
     private final PassportRepository passportRepository;
-    private final RestTemplate restTemplate = new org.springframework.web.client.RestTemplate();
+    private final RestTemplate restTemplate = createRestTemplate();
+
+    private RestTemplate createRestTemplate() {
+        RestTemplate template = new RestTemplate();
+        ClientHttpRequestInterceptor interceptor = (request, body, execution) -> {
+            ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+            if (attributes != null) {
+                HttpServletRequest servletRequest = attributes.getRequest();
+                String authHeader = servletRequest.getHeader("Authorization");
+                if (authHeader != null && authHeader.startsWith("Bearer ")) {
+                    request.getHeaders().add("Authorization", authHeader);
+                }
+            }
+            return execution.execute(request, body);
+        };
+        template.setInterceptors(Collections.singletonList(interceptor));
+        return template;
+    }
 
     public TouristDTO createTourist(TouristDTO dto) {
         Tourist tourist = new Tourist();
