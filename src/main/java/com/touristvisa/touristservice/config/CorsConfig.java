@@ -1,4 +1,27 @@
 package com.touristvisa.touristservice.config;
 
-// CORS configuration has been moved to SecurityConfig.java (CorsConfigurationSource bean)
-// to ensure Spring Security properly handles CORS before JWT filter runs.
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class CorsConfig {
+
+
+
+        @Bean
+        public WebMvcConfigurer corsConfigurer() {
+            return new WebMvcConfigurer() {
+                @Override
+                public void addCorsMappings(CorsRegistry registry) {
+                    registry.addMapping("/**") // Allow all endpoints
+                            .allowedOriginPatterns("*") // Allow all origins (localhost and VPS)
+                            .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allow these HTTP methods
+                            .allowedHeaders("*") // Allow all headers
+                            .allowCredentials(true); // Allow sending credentials/cookies if needed
+                }
+            };
+        }
+
+}

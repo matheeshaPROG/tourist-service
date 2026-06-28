@@ -1,4 +1,4 @@
-package com.touristvisa.security;
+package com.touristvisa.touristservice.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;

@@ -1,4 +1,4 @@
-package com.touristvisa.security;
+package com.touristvisa.touristservice.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
