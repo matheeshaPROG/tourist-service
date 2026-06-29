@@ -11,4 +11,5 @@ public class TouristDTO {
     private String nationality;
     private LocalDate dateOfBirth;
     private String gender;
+    private String email;
 }

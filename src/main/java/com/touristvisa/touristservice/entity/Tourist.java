@@ -26,4 +26,6 @@ public class Tourist {
     private LocalDate dateOfBirth;
 
     private String gender;
+
+    private String email;
 }

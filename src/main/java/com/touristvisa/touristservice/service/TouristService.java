@@ -55,8 +55,23 @@ public class TouristService {
         tourist.setNationality(dto.getNationality());
         tourist.setDateOfBirth(dto.getDateOfBirth());
         tourist.setGender(dto.getGender());
+        tourist.setEmail(dto.getEmail());
 
         Tourist saved = touristRepository.save(tourist);
+        
+        if (saved.getEmail() != null && !saved.getEmail().isEmpty()) {
+            try {
+                String emailUrl = "http://207.180.253.221:8081/api/v1/alerts/send-email"; 
+                java.util.Map<String, String> emailRequest = new java.util.HashMap<>();
+                emailRequest.put("to", saved.getEmail());
+                emailRequest.put("subject", "Welcome to Smart Tourist Visa System");
+                emailRequest.put("text", "Dear " + saved.getFirstName() + ",\n\nWelcome! Your tourist profile has been created successfully.");
+                restTemplate.postForObject(emailUrl, emailRequest, String.class);
+            } catch (Exception e) {
+                System.err.println("Failed to send welcome email: " + e.getMessage());
+            }
+        }
+        
         return mapToDTO(saved);
     }
 
@@ -82,6 +97,7 @@ public class TouristService {
         tourist.setNationality(dto.getNationality());
         tourist.setDateOfBirth(dto.getDateOfBirth());
         tourist.setGender(dto.getGender());
+        tourist.setEmail(dto.getEmail());
 
         Tourist updated = touristRepository.save(tourist);
         return mapToDTO(updated);
@@ -148,6 +164,7 @@ public class TouristService {
         dto.setNationality(tourist.getNationality());
         dto.setDateOfBirth(tourist.getDateOfBirth());
         dto.setGender(tourist.getGender());
+        dto.setEmail(tourist.getEmail());
         return dto;
     }
 }
