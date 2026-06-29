@@ -61,7 +61,7 @@ public class TouristService {
         
         if (saved.getEmail() != null && !saved.getEmail().isEmpty()) {
             try {
-                String emailUrl = "http://207.180.253.221:8081/api/v1/alerts/send-email"; 
+                String emailUrl = "http://alert-audit-service:8080/api/v1/alerts/send-email"; 
                 java.util.Map<String, String> emailRequest = new java.util.HashMap<>();
                 emailRequest.put("to", saved.getEmail());
                 emailRequest.put("subject", "Welcome to Smart Tourist Visa System");
@@ -115,7 +115,7 @@ public class TouristService {
         String visaStatus = "No Visa Found";
         
         try {
-            String url = "http://207.180.253.221:8085/api/visas/search/passport?passportId=" + passport.getPassportId() + "&page=0&size=10";
+            String url = "http://visa-tracking-service:8080/api/visas/search/passport?passportId=" + passport.getPassportId() + "&page=0&size=10";
             JsonNode response = restTemplate.getForObject(url, JsonNode.class);
             
             if (response != null) {
