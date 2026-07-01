@@ -1,1 +1,2005 @@
-this file contains the .Json file to test APIs 
+{
+  "info": {
+    "_postman_id": "0ace19b3-390a-4891-9fab-fcc3de4b1158",
+    "name": "Tourist",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54158595",
+    "_collection_link": "https://go.postman.co/collection/54158595-0ace19b3-390a-4891-9fab-fcc3de4b1158?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Passport",
+      "item": [
+        {
+          "name": "create passport",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"passportNumber\": \"N7654321\",\n  \"issueDate\": \"2023-01-15\",\n  \"expiryDate\": \"2033-01-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/passports/tourist/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "passports",
+                "tourist",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "create passport",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"passportNumber\": \"N765432134\",\n  \"issueDate\": \"2023-01-15\",\n  \"expiryDate\": \"2033-01-15\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/passports/tourist/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "passports",
+                    "tourist",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "233"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 06:47:10 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"expiryDate\": \"2033-01-15\",\n    \"issueDate\": \"2023-01-15\",\n    \"passportId\": 13,\n    \"passportNumber\": \"N765432134\",\n    \"tourist\": {\n        \"dateOfBirth\": \"1998-05-12\",\n        \"firstName\": \"Kasun\",\n        \"gender\": \"Male\",\n        \"lastName\": \"Perera\",\n        \"nationality\": \"Sri Lanka\",\n        \"touristId\": 1\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "get all passports (paginated)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/passports?page=0&size=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "passports"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get all passports (paginated)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/passports?page=0&size=10",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "passports"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "546"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 06:46:41 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"content\": [\n        {\n            \"expiryDate\": \"2033-01-15\",\n            \"issueDate\": \"2023-01-15\",\n            \"passportId\": 8,\n            \"passportNumber\": \"N7654321\",\n            \"tourist\": {\n                \"dateOfBirth\": \"1998-05-12\",\n                \"firstName\": \"Kasun\",\n                \"gender\": \"Male\",\n                \"lastName\": \"Perera\",\n                \"nationality\": \"Sri Lanka\",\n                \"touristId\": 1\n            }\n        }\n    ],\n    \"empty\": false,\n    \"first\": true,\n    \"last\": true,\n    \"number\": 0,\n    \"numberOfElements\": 1,\n    \"pageable\": {\n        \"offset\": 0,\n        \"pageNumber\": 0,\n        \"pageSize\": 10,\n        \"paged\": true,\n        \"sort\": {\n            \"empty\": true,\n            \"sorted\": false,\n            \"unsorted\": true\n        },\n        \"unpaged\": false\n    },\n    \"size\": 10,\n    \"sort\": {\n        \"empty\": true,\n        \"sorted\": false,\n        \"unsorted\": true\n    },\n    \"totalElements\": 1,\n    \"totalPages\": 1\n}"
+            }
+          ]
+        },
+        {
+          "name": "get passport by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/passports/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "passports",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get passport by tourist",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/passports/tourist/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "passports",
+                "tourist",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get passport by tourist",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/passports/tourist/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "passports",
+                    "tourist",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "232"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 06:46:52 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"expiryDate\": \"2033-01-15\",\n        \"issueDate\": \"2023-01-15\",\n        \"passportId\": 8,\n        \"passportNumber\": \"N7654321\",\n        \"tourist\": {\n            \"dateOfBirth\": \"1998-05-12\",\n            \"firstName\": \"Kasun\",\n            \"gender\": \"Male\",\n            \"lastName\": \"Perera\",\n            \"nationality\": \"Sri Lanka\",\n            \"touristId\": 1\n        }\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "update passport",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"passportNumber\": \"N1234568\",\n  \"issueDate\": \"2023-01-15\",\n  \"expiryDate\": \"2035-01-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/passports/1/tourist/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "passports",
+                "1",
+                "tourist",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete passport",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/passports/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "passports",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "EmergencyContact",
+      "item": [
+        {
+          "name": "create emergency contact",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Sunil Perera\",\n  \"phoneNumber\": \"+94771234567\",\n  \"relationship\": \"Father\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/emergency-contacts/tourist/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "emergency-contacts",
+                "tourist",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "create emergency contact",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Sunil Perera\",\n  \"phoneNumber\": \"+94771234567\",\n  \"relationship\": \"Father\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/emergency-contacts/tourist/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "emergency-contacts",
+                    "tourist",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "225"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 06:45:21 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"contactId\": 2,\n    \"name\": \"Sunil Perera\",\n    \"phoneNumber\": \"+94771234567\",\n    \"relationship\": \"Father\",\n    \"tourist\": {\n        \"dateOfBirth\": \"1998-05-12\",\n        \"firstName\": \"Kasun\",\n        \"gender\": \"Male\",\n        \"lastName\": \"Perera\",\n        \"nationality\": \"Sri Lanka\",\n        \"touristId\": 1\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "get contacts by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/emergency-contacts/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "emergency-contacts",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get contacts by id",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/emergency-contacts/2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "emergency-contacts",
+                    "2"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "225"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 07:00:34 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"contactId\": 2,\n    \"name\": \"Sunil Perera\",\n    \"phoneNumber\": \"+94771234567\",\n    \"relationship\": \"Father\",\n    \"tourist\": {\n        \"dateOfBirth\": \"1998-05-12\",\n        \"firstName\": \"Kasun\",\n        \"gender\": \"Male\",\n        \"lastName\": \"Perera\",\n        \"nationality\": \"Sri Lanka\",\n        \"touristId\": 1\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "get contacts by tourist",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/emergency-contacts/tourist/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "emergency-contacts",
+                "tourist",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get contacts by tourist",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/emergency-contacts/tourist/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "emergency-contacts",
+                    "tourist",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "227"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 07:00:47 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"contactId\": 2,\n        \"name\": \"Sunil Perera\",\n        \"phoneNumber\": \"+94771234567\",\n        \"relationship\": \"Father\",\n        \"tourist\": {\n            \"dateOfBirth\": \"1998-05-12\",\n            \"firstName\": \"Kasun\",\n            \"gender\": \"Male\",\n            \"lastName\": \"Perera\",\n            \"nationality\": \"Sri Lanka\",\n            \"touristId\": 1\n        }\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "update contacts",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Sunil Perera\",\n  \"phoneNumber\": \"+94777654321\",\n  \"relationship\": \"Father\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/emergency-contacts/1/tourist/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "emergency-contacts",
+                "1",
+                "tourist",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete contact",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/emergency-contacts/1\n",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "emergency-contacts",
+                "1\n"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "delete contact",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/emergency-contacts/1\n",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "emergency-contacts",
+                    "1\n"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Length",
+                  "value": "0"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 07:02:05 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "get all contacts (paginated)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/emergency-contacts?page=0&size=10\n",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "emergency-contacts"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10\n"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get all contacts (paginated)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/emergency-contacts?page=0&size=10\n",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "emergency-contacts"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10\n"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "541"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 07:01:29 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"content\": [\n        {\n            \"contactId\": 2,\n            \"name\": \"Sunil Perera\",\n            \"phoneNumber\": \"+94771234567\",\n            \"relationship\": \"Father\",\n            \"tourist\": {\n                \"dateOfBirth\": \"1998-05-12\",\n                \"firstName\": \"Kasun\",\n                \"gender\": \"Male\",\n                \"lastName\": \"Perera\",\n                \"nationality\": \"Sri Lanka\",\n                \"touristId\": 1\n            }\n        }\n    ],\n    \"empty\": false,\n    \"first\": true,\n    \"last\": true,\n    \"number\": 0,\n    \"numberOfElements\": 1,\n    \"pageable\": {\n        \"offset\": 0,\n        \"pageNumber\": 0,\n        \"pageSize\": 10,\n        \"paged\": true,\n        \"sort\": {\n            \"empty\": true,\n            \"sorted\": false,\n            \"unsorted\": true\n        },\n        \"unpaged\": false\n    },\n    \"size\": 10,\n    \"sort\": {\n        \"empty\": true,\n        \"sorted\": false,\n        \"unsorted\": true\n    },\n    \"totalElements\": 1,\n    \"totalPages\": 1\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "EntryRecord",
+      "item": [
+        {
+          "name": "create entry record",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"airport\": \"Bandaranaike International Airport\",\n  \"entryDate\": \"2026-06-01\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/entry-records/tourist/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "entry-records",
+                "tourist",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "create entry record",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"airport\": \"Bandaranaike International Airport\",\n  \"entryDate\": \"2026-06-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/entry-records/tourist/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "entry-records",
+                    "tourist",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "220"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 06:44:34 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"airport\": \"Bandaranaike International Airport\",\n    \"entryDate\": \"2026-06-01\",\n    \"entryId\": 2,\n    \"tourist\": {\n        \"dateOfBirth\": \"1998-05-12\",\n        \"firstName\": \"Kasun\",\n        \"gender\": \"Male\",\n        \"lastName\": \"Perera\",\n        \"nationality\": \"Sri Lanka\",\n        \"touristId\": 1\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "get all entry records (paginated)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/entry-records?page=0&size=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "entry-records"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get all entry records (paginated)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/entry-records?page=0&size=10",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "entry-records"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "536"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 06:44:41 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"content\": [\n        {\n            \"airport\": \"Bandaranaike International Airport\",\n            \"entryDate\": \"2026-06-01\",\n            \"entryId\": 2,\n            \"tourist\": {\n                \"dateOfBirth\": \"1998-05-12\",\n                \"firstName\": \"Kasun\",\n                \"gender\": \"Male\",\n                \"lastName\": \"Perera\",\n                \"nationality\": \"Sri Lanka\",\n                \"touristId\": 1\n            }\n        }\n    ],\n    \"empty\": false,\n    \"first\": true,\n    \"last\": true,\n    \"number\": 0,\n    \"numberOfElements\": 1,\n    \"pageable\": {\n        \"offset\": 0,\n        \"pageNumber\": 0,\n        \"pageSize\": 10,\n        \"paged\": true,\n        \"sort\": {\n            \"empty\": true,\n            \"sorted\": false,\n            \"unsorted\": true\n        },\n        \"unpaged\": false\n    },\n    \"size\": 10,\n    \"sort\": {\n        \"empty\": true,\n        \"sorted\": false,\n        \"unsorted\": true\n    },\n    \"totalElements\": 1,\n    \"totalPages\": 1\n}"
+            }
+          ]
+        },
+        {
+          "name": "get entry records by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/entry-records/1\n",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "entry-records",
+                "1\n"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get entry records by id",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/entry-records/1\n",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "entry-records",
+                    "1\n"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 06:44:47 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 404,\n    \"message\": \"Entry record not found with id: 1\",\n    \"timestamp\": \"2026-07-01T12:14:47.580859\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "get entry records by tourist",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/entry-records/tourist/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "entry-records",
+                "tourist",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get entry records by tourist",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/entry-records/tourist/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "entry-records",
+                    "tourist",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "222"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 06:45:07 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"airport\": \"Bandaranaike International Airport\",\n        \"entryDate\": \"2026-06-01\",\n        \"entryId\": 2,\n        \"tourist\": {\n            \"dateOfBirth\": \"1998-05-12\",\n            \"firstName\": \"Kasun\",\n            \"gender\": \"Male\",\n            \"lastName\": \"Perera\",\n            \"nationality\": \"Sri Lanka\",\n            \"touristId\": 1\n        }\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "delete entry record",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/entry-records/1\n",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "entry-records",
+                "1\n"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "delete entry record",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/entry-records/1\n",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "entry-records",
+                    "1\n"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Length",
+                  "value": "0"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 06:45:13 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ExitRecord",
+      "item": [
+        {
+          "name": "create exit record",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"airport\": \"Bandaranaike International Airport\",\n  \"exitDate\": \"2026-06-20\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/exit-records/tourist/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "exit-records",
+                "tourist",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "create exit record",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"airport\": \"Bandaranaike International Airport\",\n  \"exitDate\": \"2026-06-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/exit-records/tourist/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "exit-records",
+                    "tourist",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "218"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 06:41:31 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"airport\": \"Bandaranaike International Airport\",\n    \"exitDate\": \"2026-06-20\",\n    \"exitId\": 2,\n    \"tourist\": {\n        \"dateOfBirth\": \"1998-05-12\",\n        \"firstName\": \"Kasun\",\n        \"gender\": \"Male\",\n        \"lastName\": \"Perera\",\n        \"nationality\": \"Sri Lanka\",\n        \"touristId\": 1\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "get all exit records (paginated)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/exit-records?page=0&size=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "exit-records"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get all exit records (paginated)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/exit-records?page=0&size=10",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "exit-records"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "534"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 06:43:53 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"content\": [\n        {\n            \"airport\": \"Bandaranaike International Airport\",\n            \"exitDate\": \"2026-06-20\",\n            \"exitId\": 2,\n            \"tourist\": {\n                \"dateOfBirth\": \"1998-05-12\",\n                \"firstName\": \"Kasun\",\n                \"gender\": \"Male\",\n                \"lastName\": \"Perera\",\n                \"nationality\": \"Sri Lanka\",\n                \"touristId\": 1\n            }\n        }\n    ],\n    \"empty\": false,\n    \"first\": true,\n    \"last\": true,\n    \"number\": 0,\n    \"numberOfElements\": 1,\n    \"pageable\": {\n        \"offset\": 0,\n        \"pageNumber\": 0,\n        \"pageSize\": 10,\n        \"paged\": true,\n        \"sort\": {\n            \"empty\": true,\n            \"sorted\": false,\n            \"unsorted\": true\n        },\n        \"unpaged\": false\n    },\n    \"size\": 10,\n    \"sort\": {\n        \"empty\": true,\n        \"sorted\": false,\n        \"unsorted\": true\n    },\n    \"totalElements\": 1,\n    \"totalPages\": 1\n}"
+            }
+          ]
+        },
+        {
+          "name": "get exit records by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/exit-records/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "exit-records",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get exit records by id",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/exit-records/3",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "exit-records",
+                    "3"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "218"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 06:59:33 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"airport\": \"Bandaranaike International Airport\",\n    \"exitDate\": \"2026-06-23\",\n    \"exitId\": 3,\n    \"tourist\": {\n        \"dateOfBirth\": \"1998-05-12\",\n        \"firstName\": \"Kasun\",\n        \"gender\": \"Male\",\n        \"lastName\": \"Perera\",\n        \"nationality\": \"Sri Lanka\",\n        \"touristId\": 1\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "get exit records by tourist",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/exit-records/tourist/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "exit-records",
+                "tourist",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get exit records by tourist",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/exit-records/tourist/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "exit-records",
+                    "tourist",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "220"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 06:44:10 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"airport\": \"Bandaranaike International Airport\",\n        \"exitDate\": \"2026-06-20\",\n        \"exitId\": 2,\n        \"tourist\": {\n            \"dateOfBirth\": \"1998-05-12\",\n            \"firstName\": \"Kasun\",\n            \"gender\": \"Male\",\n            \"lastName\": \"Perera\",\n            \"nationality\": \"Sri Lanka\",\n            \"touristId\": 1\n        }\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "delete exit record",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/exit-records/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "exit-records",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "delete exit record",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/exit-records/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "exit-records",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Length",
+                  "value": "0"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 01 Jul 2026 06:59:47 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "create tourist 2",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Nimal\",\n  \"lastName\": \"Silva\",\n  \"nationality\": \"Sri Lanka\",\n  \"dateOfBirth\": \"1995-02-20\",\n  \"gender\": \"Male\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/tourists",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "tourists"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "create tourist 2",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Nimal\",\n  \"lastName\": \"Silva\",\n  \"nationality\": \"Sri Lanka\",\n  \"dateOfBirth\": \"1995-02-20\",\n  \"gender\": \"Male\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/tourists",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tourists"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "123"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 01 Jul 2026 06:39:02 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"dateOfBirth\": \"1995-02-20\",\n    \"firstName\": \"Nimal\",\n    \"gender\": \"Male\",\n    \"lastName\": \"Silva\",\n    \"nationality\": \"Sri Lanka\",\n    \"touristId\": 5\n}"
+        }
+      ]
+    },
+    {
+      "name": "create tourist",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Kasun\",\n  \"lastName\": \"Perera\",\n  \"nationality\": \"Sri Lanka\",\n  \"dateOfBirth\": \"1998-05-12\",\n  \"gender\": \"Male\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/tourists",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "tourists"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "create tourist",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Kasun\",\n  \"lastName\": \"Perera\",\n  \"nationality\": \"Sri Lanka\",\n  \"dateOfBirth\": \"1998-05-12\",\n  \"gender\": \"Male\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/tourists",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tourists"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "124"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 01 Jul 2026 06:32:01 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"dateOfBirth\": \"1998-05-12\",\n    \"firstName\": \"Kasun\",\n    \"gender\": \"Male\",\n    \"lastName\": \"Perera\",\n    \"nationality\": \"Sri Lanka\",\n    \"touristId\": 4\n}"
+        }
+      ]
+    },
+    {
+      "name": "get all tourists (paginated)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/tourists?page=0&size=10",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "tourists"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "size",
+              "value": "10"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "get all tourists (paginated)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/tourists?page=0&size=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tourists"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "813"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 01 Jul 2026 06:39:32 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"content\": [\n        {\n            \"dateOfBirth\": \"1998-05-12\",\n            \"firstName\": \"Kasun\",\n            \"gender\": \"Male\",\n            \"lastName\": \"Perera\",\n            \"nationality\": \"Sri Lanka\",\n            \"touristId\": 1\n        },\n        {\n            \"dateOfBirth\": \"1995-02-20\",\n            \"firstName\": \"Nimal\",\n            \"gender\": \"Male\",\n            \"lastName\": \"Silva\",\n            \"nationality\": \"Sri Lanka\",\n            \"touristId\": 3\n        },\n        {\n            \"dateOfBirth\": \"1998-05-12\",\n            \"firstName\": \"Kasun\",\n            \"gender\": \"Male\",\n            \"lastName\": \"Perera\",\n            \"nationality\": \"Sri Lanka\",\n            \"touristId\": 4\n        },\n        {\n            \"dateOfBirth\": \"1995-02-20\",\n            \"firstName\": \"Nimal\",\n            \"gender\": \"Male\",\n            \"lastName\": \"Silva\",\n            \"nationality\": \"Sri Lanka\",\n            \"touristId\": 5\n        }\n    ],\n    \"empty\": false,\n    \"first\": true,\n    \"last\": true,\n    \"number\": 0,\n    \"numberOfElements\": 4,\n    \"pageable\": {\n        \"offset\": 0,\n        \"pageNumber\": 0,\n        \"pageSize\": 10,\n        \"paged\": true,\n        \"sort\": {\n            \"empty\": true,\n            \"sorted\": false,\n            \"unsorted\": true\n        },\n        \"unpaged\": false\n    },\n    \"size\": 10,\n    \"sort\": {\n        \"empty\": true,\n        \"sorted\": false,\n        \"unsorted\": true\n    },\n    \"totalElements\": 4,\n    \"totalPages\": 1\n}"
+        }
+      ]
+    },
+    {
+      "name": "get tourist by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/tourists/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "tourists",
+            "1"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "get tourist by id",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/tourists/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tourists",
+                "1"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "124"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 01 Jul 2026 06:39:39 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"dateOfBirth\": \"1998-05-12\",\n    \"firstName\": \"Kasun\",\n    \"gender\": \"Male\",\n    \"lastName\": \"Perera\",\n    \"nationality\": \"Sri Lanka\",\n    \"touristId\": 1\n}"
+        }
+      ]
+    },
+    {
+      "name": "update tourist",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Kasun\",\n  \"lastName\": \"Perera\",\n  \"nationality\": \"Sri Lanka\",\n  \"dateOfBirth\": \"1998-05-12\",\n  \"gender\": \"Male\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/tourists/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "tourists",
+            "1"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "update tourist",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Kasun\",\n  \"lastName\": \"Perera\",\n  \"nationality\": \"Sri Lanka\",\n  \"dateOfBirth\": \"1998-05-12\",\n  \"gender\": \"Male\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/tourists/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tourists",
+                "1"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "124"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 01 Jul 2026 06:39:52 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"dateOfBirth\": \"1998-05-12\",\n    \"firstName\": \"Kasun\",\n    \"gender\": \"Male\",\n    \"lastName\": \"Perera\",\n    \"nationality\": \"Sri Lanka\",\n    \"touristId\": 1\n}"
+        }
+      ]
+    },
+    {
+      "name": "delete tourist",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/tourists/2\n",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "tourists",
+            "2\n"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "delete tourist",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/tourists/2\n",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tourists",
+                "2\n"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Length",
+              "value": "0"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 01 Jul 2026 06:40:01 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": null
+        }
+      ]
+    }
+  ]
+}
