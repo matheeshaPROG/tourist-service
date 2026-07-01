@@ -16,7 +16,7 @@ public class CorsConfig {
                 @Override
                 public void addCorsMappings(CorsRegistry registry) {
                     registry.addMapping("/**") // Allow all endpoints
-                            .allowedOriginPatterns("*") // Allow all origins (localhost and VPS)
+                            .allowedOrigins("http://localhost:5173", "http://localhost:3000", "https://frontend.panthiya.edu.lk", "https://panthiya.edu.lk", "https://dea.panthiya.edu.lk")
                             .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allow these HTTP methods
                             .allowedHeaders("*") // Allow all headers
                             .allowCredentials(true); // Allow sending credentials/cookies if needed
