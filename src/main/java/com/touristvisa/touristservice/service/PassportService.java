@@ -73,7 +73,7 @@ public class PassportService {
         passportRepository.deleteById(id);
     }
 
-    // Converts a Passport entity into a PassportDTO, including its nested TouristDTO
+   
     private PassportDTO mapToDTO(Passport passport) {
         PassportDTO dto = new PassportDTO();
         dto.setPassportId(passport.getPassportId());
@@ -84,7 +84,7 @@ public class PassportService {
         return dto;
     }
 
-    // Small helper just for converting the nested Tourist
+
     private TouristDTO mapTouristToDTO(Tourist tourist) {
         TouristDTO touristDTO = new TouristDTO();
         touristDTO.setTouristId(tourist.getTouristId());
@@ -93,6 +93,7 @@ public class PassportService {
         touristDTO.setNationality(tourist.getNationality());
         touristDTO.setDateOfBirth(tourist.getDateOfBirth());
         touristDTO.setGender(tourist.getGender());
+        touristDTO.setEmail(tourist.getEmail());
         return touristDTO;
     }
 }
