@@ -104,7 +104,18 @@ public class TouristService {
     }
 
     public void deleteTourist(Long id) {
-        touristRepository.deleteById(id);
+        Tourist tourist = touristRepository.findById(id).orElse(null);
+        if (tourist != null) {
+            if (tourist.getEmail() != null && !tourist.getEmail().isEmpty()) {
+                try {
+                    String authUrl = "http://authentication-service:8080/api/users/" + tourist.getEmail();
+                    restTemplate.delete(authUrl);
+                } catch (Exception e) {
+                    System.err.println("Failed to delete user account in authentication service: " + e.getMessage());
+                }
+            }
+            touristRepository.deleteById(id);
+        }
     }
 
     public HotelTouristViewDTO getHotelTouristView(String passportNumber) {
