@@ -3,6 +3,7 @@ package com.touristvisa.touristservice.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "tourists")
@@ -28,4 +29,16 @@ public class Tourist {
     private String gender;
 
     private String email;
+
+    @OneToMany(mappedBy = "tourist", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Passport> passports;
+
+    @OneToMany(mappedBy = "tourist", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<EmergencyContact> emergencyContacts;
+
+    @OneToMany(mappedBy = "tourist", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<EntryRecord> entryRecords;
+
+    @OneToMany(mappedBy = "tourist", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ExitRecord> exitRecords;
 }
